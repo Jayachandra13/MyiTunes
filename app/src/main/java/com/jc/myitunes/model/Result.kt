@@ -5,14 +5,7 @@ import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class Track() :Parcelable {
-    override fun writeToParcel(dest: Parcel?, flags: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun describeContents(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+class Result() :Parcelable{
 
     @SerializedName("wrapperType")
     @Expose
@@ -142,12 +135,50 @@ class Track() :Parcelable {
         isStreamable = parcel.readValue(Boolean::class.java.classLoader) as? Boolean
     }
 
-    companion object CREATOR : Parcelable.Creator<Track> {
-        override fun createFromParcel(parcel: Parcel): Track {
-            return Track(parcel)
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(wrapperType)
+        parcel.writeString(kind)
+        parcel.writeValue(artistId)
+        parcel.writeValue(collectionId)
+        parcel.writeValue(trackId)
+        parcel.writeString(artistName)
+        parcel.writeString(collectionName)
+        parcel.writeString(trackName)
+        parcel.writeString(collectionCensoredName)
+        parcel.writeString(trackCensoredName)
+        parcel.writeString(artistViewUrl)
+        parcel.writeString(collectionViewUrl)
+        parcel.writeString(trackViewUrl)
+        parcel.writeString(previewUrl)
+        parcel.writeString(artworkUrl30)
+        parcel.writeString(artworkUrl60)
+        parcel.writeString(artworkUrl100)
+        parcel.writeValue(collectionPrice)
+        parcel.writeValue(trackPrice)
+        parcel.writeString(releaseDate)
+        parcel.writeString(collectionExplicitness)
+        parcel.writeString(trackExplicitness)
+        parcel.writeValue(discCount)
+        parcel.writeValue(discNumber)
+        parcel.writeValue(trackCount)
+        parcel.writeValue(trackNumber)
+        parcel.writeValue(trackTimeMillis)
+        parcel.writeString(country)
+        parcel.writeString(currency)
+        parcel.writeString(primaryGenreName)
+        parcel.writeValue(isStreamable)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Result> {
+        override fun createFromParcel(parcel: Parcel): Result {
+            return Result(parcel)
         }
 
-        override fun newArray(size: Int): Array<Track?> {
+        override fun newArray(size: Int): Array<Result?> {
             return arrayOfNulls(size)
         }
     }
